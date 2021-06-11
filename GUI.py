@@ -1,4 +1,10 @@
 import tkinter as tk
+from matplotlib import image
+import matplotlib.pyplot as plt
+import numpy as np
+from io import *
+from PIL import * 
+
 
 class Application(tk.Frame):
 
@@ -27,9 +33,16 @@ class Application(tk.Frame):
     
     def take_entry(self):
         self.entered_text = self.entry_field.get()
-        self.new_label = tk.Label(self,text=self.entered_text)
-        self.new_label.pack()
-    
+        ImageObject = StringIO()
+        if self.entered_text=="sinx":
+            self.canvas = tk.Canvas(self,width = 300,height = 300)
+            self.canvas.pack()
+            x = np.arange(0,2*np.pi,0.1)
+            y = np.sin(x)
+            fig_1 = plt.figure()
+            plt.plot(x,y)
+            ImageObject.seek(0)
+            self.canvas.create_image(0,0,image = plt.show())
 
 root = tk.Tk()
 app = Application(master = root)
