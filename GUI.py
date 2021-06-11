@@ -17,8 +17,8 @@ class Application(tk.Frame):
         self.Button_1.pack(side="bottom")
 
     def say_hi(self):
-        print("Hello There")
-
+        myLabel = tk.Label(self,text = "Hello World")
+        myLabel.pack(side = "top")
 
 root = tk.Tk()
 app = Application(master = root)
