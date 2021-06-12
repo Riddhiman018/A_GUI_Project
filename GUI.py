@@ -28,7 +28,7 @@ class Application(tk.Frame):
         self.new_button.pack()
 
     def say_hi(self):
-        self.myLabel = tk.Label(self,text = "Hello World")
+        self.myLabel = tk.Label(self,text = "Enter the function in the text box and click on the button below")
         self.myLabel.pack(side = "top")
     
     def take_entry(self):
