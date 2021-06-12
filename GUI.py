@@ -1,9 +1,9 @@
 import tkinter as tk
+from tkinter.constants import END
 from matplotlib import image
 import matplotlib.pyplot as plt
 import numpy as np
-from io import *
-from PIL import * 
+from io import * 
 
 
 class Application(tk.Frame):
@@ -13,7 +13,7 @@ class Application(tk.Frame):
         self.master = master
         self.pack()
         self.create_widgets()
-        self.entry_field = tk.Entry(self,width = 50,borderwidth=5,bg="RED")
+        self.entry_field = tk.Entry(self,width = 50,borderwidth=5)
         self.entry_field.pack()
 
     def create_widgets(self):
@@ -33,16 +33,19 @@ class Application(tk.Frame):
     
     def take_entry(self):
         self.entered_text = self.entry_field.get()
-        ImageObject = StringIO()
         if self.entered_text=="sinx":
-            self.canvas = tk.Canvas(self,width = 300,height = 300)
-            self.canvas.pack()
             x = np.arange(0,2*np.pi,0.1)
             y = np.sin(x)
-            fig_1 = plt.figure()
             plt.plot(x,y)
-            ImageObject.seek(0)
-            self.canvas.create_image(0,0,image = plt.show())
+            plt.show()
+            self.entry_field.delete(0,END)
+        elif self.entered_text == "cosx":
+            x = np.arange(0,2*np.pi,0.1)
+            y = np.cos(x)
+            plt.plot(x,y)
+            plt.show()
+            self.entry_field.delete(0,END)
+
 
 root = tk.Tk()
 app = Application(master = root)
