@@ -16,6 +16,7 @@ class Application(tk.Frame):
         self.pack()
         self.create_widgets()
 
+#Create widgets
     def create_widgets(self):
         self.Button_1 = tk.Button(self)
         self.Button_1["text"] = "Hello There\nClick"
