@@ -4,7 +4,8 @@ from tkinter.constants import END
 from matplotlib import image
 import matplotlib.pyplot as plt
 import numpy as np
-from io import * 
+from io import *
+from tkinter.messagebox import * 
 
 
 class Application(tk.Frame):
@@ -48,6 +49,7 @@ class Application(tk.Frame):
         self.myLabel.pack(side = "top")
     
     def take_entry(self):
+
         self.entered_text = self.entry_field.get()
         self.range_value = int(self.entry_field_end_value.get())
         if self.entered_text=="sinx":
@@ -57,6 +59,7 @@ class Application(tk.Frame):
             plt.show()
             self.entry_field.delete(0,END)
             self.entry_field_end_value.delete(0,END)
+
         elif self.entered_text == "cosx":
             x = np.arange(0,self.range_value*np.pi,0.1)
             y = np.cos(x)
@@ -64,6 +67,9 @@ class Application(tk.Frame):
             plt.show()
             self.entry_field.delete(0,END)
             self.entry_field_end_value.delete(0,END)
+        
+        else:
+            showerror("Error","Function under development")
 
 
 root = tk.Tk()
