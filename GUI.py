@@ -90,6 +90,13 @@ class Application_2(tk.Frame):
         self.show_button.pack(side="bottom")
         self.pack()
 
+    def display_Data(self):
+        database = sqlite3.connect('example.db')
+        cursor = database.cursor()
+        for row in cursor.execute('''select * from function_stock'''):
+            text_1 = "Function " + row[0]
+            self.Label_1 = tk.Label(text = text_1,fg = "GREEN")
+            self.Label_1.pack()
     
 
 root = tk.Tk()
