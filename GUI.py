@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from io import *
 from tkinter.messagebox import * 
+import sqlite3
 
 
 class Application(tk.Frame):
@@ -73,6 +74,25 @@ class Application(tk.Frame):
             showerror("Error","Function under development")
 
 
+
+class Application_2(tk.Frame):
+    def __init__(self, master = None):
+        super().__init__(master)
+        self.master = master
+        self.frame = tk.Label(self,text="Available Functions",bg="Yellow",anchor="sw")
+        self.frame.pack(side="top")
+        self.show_button = tk.Button(self)
+        self.show_button["text"] = "Click for the list of available functions"
+        self.show_button["padx"] = 5
+        self.show_button["relief"] = "ridge"
+        self.show_button["foreground"] = "RED"
+        self.show_button["command"] = self.display_Data 
+        self.show_button.pack(side="bottom")
+        self.pack()
+
+    
+
 root = tk.Tk()
 app = Application(master = root)
-app.mainloop()
+second_app = Application_2(master=root)
+root.mainloop()
