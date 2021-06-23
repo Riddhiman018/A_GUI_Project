@@ -1,9 +1,15 @@
+import smtplib
 import tkinter as tk
 from tkinter.messagebox import *
 from tkinter.constants import LEFT, RIGHT
-from matplotlib.pyplot import grid
+from matplotlib.pyplot import connect, grid
 from pytube import YouTube
-import youtube_dl
+import random
+import math
+from smtplib import SMTP_SSL
+import ssl
+import email.utils
+import email
 import sys
 
 
@@ -49,8 +55,35 @@ class My_Application(tk.Frame):
         stream = yt2.streams.get_by_resolution("720p")
         stream.download(output_path=r"C:\Users\Riddhiman\Desktop")
 
-#will be adding functionality to download instagram videos also
+class Second_App(tk.Frame):
+    def __init__(self, master = None):
+        super().__init__(master)
+        self.master = master
+        self.pack(side = "bottom")
+        self.OTP_Verify()
+    
+    def OTP_Verify(self):
+        self.New_Label = tk.Label(self,text = "Click on button to generate OTP")
+        self.New_Label.pack()
+        self.Gen_OTP = tk.Button(self)
+        self.Gen_OTP["text"] = "Generate"
+        self.Gen_OTP["command"] = self.send_mail        
+        self.Gen_OTP.pack(side = "bottom",anchor="s")
+
+    def send_mail(self):
+        port = 465  #secure ssl port
+        create_server_link = ssl.create_default_context()
+        message = "Hello"
+
+        with SMTP_SSL('smtp.gmail.com',port,context=create_server_link) as server: #started an smtp server
+            server.login("yorb99test@gmail.com","Hello123!@#")
+            server.sendmail("yorb99test@gmail.com","shubro18@gmail.com",message)
+            self.MyLabel = tk.Label(self, text="Sent Check Mail")
+            self.MyLabel.pack(side="bottom")
+            server.quit()
+
 
 root = tk.Tk()
 app = My_Application(master=root)
-app.mainloop()
+app2 = Second_App(master=root)
+root.mainloop()
