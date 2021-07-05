@@ -5,6 +5,7 @@ import smtplib
 import ssl
 
 recipient_list = []
+#Just a comment
 
 class First_Frame(tk.Frame):
     def __init__(self, master):
