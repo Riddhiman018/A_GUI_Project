@@ -11,6 +11,8 @@ class First_Frame(tk.Frame):
         super().__init__(master)
         self.master = master
         self.pack(side = "top",anchor = 'n')
+        self.Entry_Pln = tk.Entry(self,width = 50,borderwidth=5)
+        self.Entry_Pln.pack(side = "top")
         self.create_widgets()
     
     def create_widgets(self):
@@ -34,7 +36,7 @@ class First_Frame(tk.Frame):
         self.NewLabel = tk.Label(self)
         for i in recipient_list:
             self.NewLabel['text'] = i
-            self.NewLabel.pack(side = "bottom")
+            self.NewLabel.pack(side = "bottom",anchor = 'sw')
         self.ContinueLabel = tk.Label(self)
         self.ContinueLabel['text'] = "Send Mail?"
         self.Yes_Button = tk.Button(self)
@@ -48,13 +50,13 @@ class First_Frame(tk.Frame):
 
     def quit_c(self):
         sys.exit()
-
     def sendmail(self):
+        text = self.Entry_Pln.get()
         port = 465
         create_ssl = ssl.create_default_context()
         with smtplib.SMTP_SSL('smtp.gmail.com',port,context=create_ssl) as server:
             server.login('yorb99test@gmail.com','Hello123!@#')
-            server.sendmail('yorb99test@gmail.com',recipient_list,"This Message Was Deleted..........")
+            server.sendmail('yorb99test@gmail.com',recipient_list,text)
             server.quit()
 
 root = tk.Tk()
