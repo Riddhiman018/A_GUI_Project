@@ -11,8 +11,8 @@ class First_Frame(tk.Frame):
         super().__init__(master)
         self.master = master
         self.pack(side = "top",anchor = 'n')
-        self.Entry_Pln = tk.Entry(self,width = 50,borderwidth=5)
-        self.Entry_Pln.pack(side = "top")
+        self.Entry_Plan = tk.Entry(self,width = 50,borderwidth=5)
+        self.Entry_Plan.pack(side = "top")
         self.create_widgets()
     
     def create_widgets(self):
@@ -51,7 +51,7 @@ class First_Frame(tk.Frame):
     def quit_c(self):
         sys.exit()
     def sendmail(self):
-        text = self.Entry_Pln.get()
+        text = self.Entry_Plan.get()
         port = 465
         create_ssl = ssl.create_default_context()
         with smtplib.SMTP_SSL('smtp.gmail.com',port,context=create_ssl) as server:
